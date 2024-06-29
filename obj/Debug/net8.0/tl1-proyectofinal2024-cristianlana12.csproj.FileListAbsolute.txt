@@ -1,0 +1,14 @@
+C:\UNIVERSIDAD\TERCER_ANIO\1_PRIMER_CUATRIMESTRE\TALLER-DE-LENGUAJES-I\tl1-proyectofinal2024-cristianlana12\bin\Debug\net8.0\tl1-proyectofinal2024-cristianlana12.exe
+C:\UNIVERSIDAD\TERCER_ANIO\1_PRIMER_CUATRIMESTRE\TALLER-DE-LENGUAJES-I\tl1-proyectofinal2024-cristianlana12\bin\Debug\net8.0\tl1-proyectofinal2024-cristianlana12.deps.json
+C:\UNIVERSIDAD\TERCER_ANIO\1_PRIMER_CUATRIMESTRE\TALLER-DE-LENGUAJES-I\tl1-proyectofinal2024-cristianlana12\bin\Debug\net8.0\tl1-proyectofinal2024-cristianlana12.runtimeconfig.json
+C:\UNIVERSIDAD\TERCER_ANIO\1_PRIMER_CUATRIMESTRE\TALLER-DE-LENGUAJES-I\tl1-proyectofinal2024-cristianlana12\bin\Debug\net8.0\tl1-proyectofinal2024-cristianlana12.dll
+C:\UNIVERSIDAD\TERCER_ANIO\1_PRIMER_CUATRIMESTRE\TALLER-DE-LENGUAJES-I\tl1-proyectofinal2024-cristianlana12\bin\Debug\net8.0\tl1-proyectofinal2024-cristianlana12.pdb
+C:\UNIVERSIDAD\TERCER_ANIO\1_PRIMER_CUATRIMESTRE\TALLER-DE-LENGUAJES-I\tl1-proyectofinal2024-cristianlana12\obj\Debug\net8.0\tl1-proyectofinal2024-cristianlana12.GeneratedMSBuildEditorConfig.editorconfig
+C:\UNIVERSIDAD\TERCER_ANIO\1_PRIMER_CUATRIMESTRE\TALLER-DE-LENGUAJES-I\tl1-proyectofinal2024-cristianlana12\obj\Debug\net8.0\tl1-proyectofinal2024-cristianlana12.AssemblyInfoInputs.cache
+C:\UNIVERSIDAD\TERCER_ANIO\1_PRIMER_CUATRIMESTRE\TALLER-DE-LENGUAJES-I\tl1-proyectofinal2024-cristianlana12\obj\Debug\net8.0\tl1-proyectofinal2024-cristianlana12.AssemblyInfo.cs
+C:\UNIVERSIDAD\TERCER_ANIO\1_PRIMER_CUATRIMESTRE\TALLER-DE-LENGUAJES-I\tl1-proyectofinal2024-cristianlana12\obj\Debug\net8.0\tl1-proyectofinal2024-cristianlana12.csproj.CoreCompileInputs.cache
+C:\UNIVERSIDAD\TERCER_ANIO\1_PRIMER_CUATRIMESTRE\TALLER-DE-LENGUAJES-I\tl1-proyectofinal2024-cristianlana12\obj\Debug\net8.0\tl1-proyectofinal2024-cristianlana12.dll
+C:\UNIVERSIDAD\TERCER_ANIO\1_PRIMER_CUATRIMESTRE\TALLER-DE-LENGUAJES-I\tl1-proyectofinal2024-cristianlana12\obj\Debug\net8.0\refint\tl1-proyectofinal2024-cristianlana12.dll
+C:\UNIVERSIDAD\TERCER_ANIO\1_PRIMER_CUATRIMESTRE\TALLER-DE-LENGUAJES-I\tl1-proyectofinal2024-cristianlana12\obj\Debug\net8.0\tl1-proyectofinal2024-cristianlana12.pdb
+C:\UNIVERSIDAD\TERCER_ANIO\1_PRIMER_CUATRIMESTRE\TALLER-DE-LENGUAJES-I\tl1-proyectofinal2024-cristianlana12\obj\Debug\net8.0\tl1-proyectofinal2024-cristianlana12.genruntimeconfig.cache
+C:\UNIVERSIDAD\TERCER_ANIO\1_PRIMER_CUATRIMESTRE\TALLER-DE-LENGUAJES-I\tl1-proyectofinal2024-cristianlana12\obj\Debug\net8.0\ref\tl1-proyectofinal2024-cristianlana12.dll
