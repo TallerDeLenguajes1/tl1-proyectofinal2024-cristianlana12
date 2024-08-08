@@ -23,7 +23,9 @@ namespace MyApp
             int opcionPersonaje;
             int.TryParse(Console.ReadLine(), out opcionPersonaje);
 
-            var miPersonaje = PersonajeHandler.CrearPersonajeUsuario(opcionPersonaje); //Creacion de personaje
+            PersonajeDatos miPersonaje = PersonajeHandler.CrearPersonajeUsuario(opcionPersonaje); //Creacion de personaje
+            PersonajeHandler.CargadoDetallesCombate(miPersonaje);
+
             if (miPersonaje != null)
             {
                 Console.WriteLine($"Nombre: {miPersonaje.Nombre}");
@@ -37,7 +39,7 @@ namespace MyApp
             }
 
             Random random = new Random(); //36, 41,45,46,47,48,49,50...,62,79
-            List<int> idConcatenar = new List<int> { 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 37, 38, 39, 40, 42, 43, 44, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79 };
+            List<int> idConcatenar = new List<int> { 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30};
             List<PersonajeDatos> grupo1;
             List<PersonajeDatos> grupo2;
             List<PersonajeDatos> grupo3;

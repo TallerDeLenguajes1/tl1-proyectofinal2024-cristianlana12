@@ -7,6 +7,10 @@ namespace clasePersonaje
         private string afiliacion;
         private string[]? tranformaciones;
         private int id;
+        private int vida;
+        private int velocidad;
+        private bool ataqueBasico;
+        private bool ataqueEspecial;
 
         public string Nombre { get => nombre; set => nombre = value; }
         public string Raza { get => raza; set => raza = value; }
@@ -14,5 +18,9 @@ namespace clasePersonaje
         public string Afiliacion { get => afiliacion; set => afiliacion = value; }
         public string[]? Tranformaciones { get => tranformaciones; set => tranformaciones = value; }
         public int Id { get => id; set => id = value; }
+        public int Vida { get => vida; set => vida = value; }
+        public int Velocidad { get => velocidad; set => velocidad = value; }
+        public bool AtaqueBasico { get => ataqueBasico; set => ataqueBasico = value; }
+        public bool AtaqueEspecial { get => ataqueEspecial; set => ataqueEspecial = value; }
     }
 }
