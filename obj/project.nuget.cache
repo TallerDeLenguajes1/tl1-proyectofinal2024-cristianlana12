@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "m8lm+GX9NeN/24kpfSmVtP5ggM9m52aiadRZPybI1ozo3clHJRMRsZoHQmRz0EldIn2CIovmt8RjO38y4sL5ug==",
+  "dgSpecHash": "eGOG5gKIYMyMMGK0AHpX0xMe42jBlmEh6jrY1B3wzDgNbsUPKch4qzc+AYj71w5WMuCEj4CNdf5oDwAs8eqEsA==",
   "success": true,
   "projectFilePath": "C:\\UNIVERSIDAD\\TERCER_ANIO\\1_PRIMER_CUATRIMESTRE\\TALLER-DE-LENGUAJES-I\\tl1-proyectofinal2024-cristianlana12\\tl1-proyectofinal2024-cristianlana12.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\cris_\\.nuget\\packages\\system.windows.extensions\\9.0.0-preview.6.24327.7\\system.windows.extensions.9.0.0-preview.6.24327.7.nupkg.sha512"
+  ],
   "logs": []
 }
