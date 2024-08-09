@@ -4,6 +4,7 @@ using api;
 using handlers;
 using clasePersonaje;
 using utilities;
+using combat;
 
 namespace MyApp
 {
@@ -14,7 +15,7 @@ namespace MyApp
             //SoundPlayerHelper.PlaySound("sonido/seleccion-personaje.wav");// reproduccion de sonido
 
             Console.WriteLine("### Inicia el torneo de la fuerza ###");
-            Console.WriteLine("Este torneo sera de 3 grupos, con 3 peleadores cada grupo, donde todos seran por sorteo");
+            Console.WriteLine("Este torneo sera de 4 Peleadores, Con 2 combates con un sorteo, y un combate final entre los vencedores");
             Console.WriteLine("1_Goku");
             Console.WriteLine("2_Vegeta");
             Console.WriteLine("3_Piccolo");
@@ -28,6 +29,7 @@ namespace MyApp
 
             if (miPersonaje != null)
             {
+                Console.WriteLine("USTED SELECCIONO AL PELEADOR: ");
                 Console.WriteLine($"Nombre: {miPersonaje.Nombre}");
                 Console.WriteLine($"Raza: {miPersonaje.Raza}");
                 Console.WriteLine($"Ki: {miPersonaje.Ki}");
@@ -37,46 +39,18 @@ namespace MyApp
             {
                 Console.WriteLine("No pudimos cargar tu personaje");
             }
+            Thread.Sleep(5000);
 
             Random random = new Random(); //36, 41,45,46,47,48,49,50...,62,79
-            List<int> idConcatenar = new List<int> { 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30};
-            List<PersonajeDatos> grupo1;
-            List<PersonajeDatos> grupo2;
-            List<PersonajeDatos> grupo3;
+            List<int> idConcatenar = new List<int> { 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 };
 
-            int opcionGrupo = random.Next(1, 4);
-            Console.WriteLine($"### Usted fue colocado en un grupo aleatorio, grupo: {opcionGrupo} ###");
+            List<PersonajeDatos> grupo;
+            grupo = PersonajeHandler.CrearGrupoPersonajesAleatorios(3, idConcatenar);
+            grupo.Add(miPersonaje);
+            PersonajeHandler.MostrarGrupo(grupo, "PELEADORES");
+            Thread.Sleep(5000);
 
-            switch (opcionGrupo)
-            {
-                case 1:
-                    grupo1 = PersonajeHandler.CrearGrupoPersonajesAleatorios(2, idConcatenar);
-                    grupo1.Add(miPersonaje);
-                    grupo2 = PersonajeHandler.CrearGrupoPersonajesAleatorios(3, idConcatenar);
-                    grupo3 = PersonajeHandler.CrearGrupoPersonajesAleatorios(3, idConcatenar);
-                    PersonajeHandler.MostrarGrupo(grupo1, 1);
-                    PersonajeHandler.MostrarGrupo(grupo2, 2);
-                    PersonajeHandler.MostrarGrupo(grupo3, 3);
-                    break;
-                case 2:
-                    grupo2 = PersonajeHandler.CrearGrupoPersonajesAleatorios(2, idConcatenar);
-                    grupo2.Add(miPersonaje);
-                    grupo1 = PersonajeHandler.CrearGrupoPersonajesAleatorios(3, idConcatenar);
-                    grupo3 = PersonajeHandler.CrearGrupoPersonajesAleatorios(3, idConcatenar);
-                    PersonajeHandler.MostrarGrupo(grupo1, 1);
-                    PersonajeHandler.MostrarGrupo(grupo2, 2);
-                    PersonajeHandler.MostrarGrupo(grupo3, 3);
-                    break;
-                case 3:
-                    grupo3 = PersonajeHandler.CrearGrupoPersonajesAleatorios(2, idConcatenar);
-                    grupo3.Add(miPersonaje);
-                    grupo2 = PersonajeHandler.CrearGrupoPersonajesAleatorios(3, idConcatenar);
-                    grupo1 = PersonajeHandler.CrearGrupoPersonajesAleatorios(3, idConcatenar);
-                    PersonajeHandler.MostrarGrupo(grupo1, 1);
-                    PersonajeHandler.MostrarGrupo(grupo2, 2);
-                    PersonajeHandler.MostrarGrupo(grupo3, 3);
-                    break;
-            }
+            combatPersonaje.mainCombat(grupo);
         }
     }
 }

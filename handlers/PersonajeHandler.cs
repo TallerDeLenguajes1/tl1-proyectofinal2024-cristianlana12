@@ -21,6 +21,7 @@ namespace handlers
                     Raza = personajeData.Race,
                     Ki = personajeData.Ki,
                     Afiliacion = personajeData.Affiliation,
+                    PersonajeUsuario = true,
                     Tranformaciones = personajeData.Transformations?.Select(t => t.Name).ToArray()
                 };
                 return newPersonaje;
@@ -37,6 +38,7 @@ namespace handlers
                     Raza = personajeData.Race,
                     Ki = personajeData.Ki,
                     Afiliacion = personajeData.Affiliation,
+                    PersonajeUsuario = false,
                     Tranformaciones = personajeData.Transformations?.Select(t => t.Name).ToArray()
                 };
                 return newPersonaje;
@@ -69,10 +71,10 @@ namespace handlers
             return grupo;
         }
 
-        public static void MostrarGrupo(List<PersonajeDatos> grupo, int nroGrupo)
+        public static void MostrarGrupo(List<PersonajeDatos> grupo, string nombreGrupo)
         {
             int i = 1;
-            Console.WriteLine($"------- GRUPO {nroGrupo} -------");
+            Console.WriteLine($"------- GRUPO {nombreGrupo} -------");
             foreach (var personaje in grupo)
             {
                 Console.WriteLine($"PELEADOR {i}; Nombre: {personaje.Nombre}; Raza: {personaje.Raza}; Ki: {personaje.Ki}");

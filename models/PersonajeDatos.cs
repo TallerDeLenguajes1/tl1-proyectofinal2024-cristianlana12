@@ -11,6 +11,7 @@ namespace clasePersonaje
         private int velocidad;
         private bool ataqueBasico;
         private bool ataqueEspecial;
+        private bool personajeUsuario;
 
         public string Nombre { get => nombre; set => nombre = value; }
         public string Raza { get => raza; set => raza = value; }
@@ -22,5 +23,6 @@ namespace clasePersonaje
         public int Velocidad { get => velocidad; set => velocidad = value; }
         public bool AtaqueBasico { get => ataqueBasico; set => ataqueBasico = value; }
         public bool AtaqueEspecial { get => ataqueEspecial; set => ataqueEspecial = value; }
+        public bool PersonajeUsuario { get => personajeUsuario; set => personajeUsuario = value; }
     }
 }
