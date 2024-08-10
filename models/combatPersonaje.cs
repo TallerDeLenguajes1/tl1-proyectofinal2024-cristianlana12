@@ -1,6 +1,8 @@
 using clasePersonaje;
 using System;
 using System.Threading;
+using utilities;
+
 
 
 namespace combat
@@ -47,8 +49,8 @@ namespace combat
             PersonajeDatos peleadorFinal1 = final[0];
             PersonajeDatos peleadorFinal2 = final[1];
 
-            mostrarParejas(peleadorFinal1,peleadorFinal2,"COMBATE FINAL");
-            ejecucionCombateUsuairo(peleadorFinal1,peleadorFinal2, final);
+            mostrarParejas(peleadorFinal1, peleadorFinal2, "COMBATE FINAL");
+            ejecucionCombateUsuairo(peleadorFinal1, peleadorFinal2, final);
 
         }
         public static void mostrarParejas(PersonajeDatos peleador1, PersonajeDatos peleador2, string nombrePelea)
@@ -65,9 +67,10 @@ namespace combat
             int daño = 0;
             while (peleador1.Vida > 0 && peleador2.Vida > 0)
             {
+
                 Console.WriteLine($"{peleador1.Nombre}       |   {peleador2.Nombre}");
                 Console.WriteLine($"Vida: {peleador1.Vida}   |   Vida: {peleador2.Vida} \n");
-                 
+
 
                 if (ronda % 2 == 0)
                 {
@@ -75,12 +78,17 @@ namespace combat
                     {
                         do
                         {
+                            Console.WriteLine("Elegi una opcion correcta: ");
                             Console.WriteLine("1_Ataque Basico");
                             Console.WriteLine("2_Ataque Especial");
                             Console.WriteLine("3_Pasar Ronda");
-                            Console.WriteLine("Elegi una opcion correcta: ");
                             int.TryParse(Console.ReadLine(), out opcionAtaque);
-                        } while (opcionAtaque < 1 && opcionAtaque > 3);
+                            if (opcionAtaque < 1 || opcionAtaque > 3)
+                            {
+                                Console.WriteLine("Selecciona una opcion entre 1 y 3 por favor");
+                            }
+
+                        } while (opcionAtaque < 1 || opcionAtaque > 3);
 
                         switch (opcionAtaque)
                         {
@@ -88,11 +96,14 @@ namespace combat
                                 daño = random.Next(100, 200);
                                 peleador2.Vida -= daño;
                                 Console.WriteLine("Elegiste el ataque basico\n");
+                                SoundPlayerHelper.PlaySound("sonido/EfectoAtaqueBase.wav");// reproduccion de sonido
+
                                 break;
                             case 2:
                                 daño = random.Next(300, 500);
                                 peleador2.Vida -= daño;
                                 Console.WriteLine("Elegiste el ataque especial\n");
+                                SoundPlayerHelper.PlaySound("sonido/EfectoATAQUE-DE-KI-DBZ-II-_320-kbps_.wav");
                                 break;
                             case 3:
                                 daño = 0;
@@ -119,11 +130,14 @@ namespace combat
                                     daño = random.Next(100, 200);
                                     peleador2.Vida -= daño;
                                     Console.WriteLine($"{peleador1.Nombre} eligio ATAQUE BASE\n");
+                                    SoundPlayerHelper.PlaySound("sonido/EfectoAtaqueBase.wav");// reproduccion de sonido
+
                                     break;
                                 case 2:
                                     daño = random.Next(300, 500);
                                     peleador2.Vida -= daño;
                                     Console.WriteLine($"{peleador1.Nombre} eligio ATAQUE ESPECIAL\n");
+                                    SoundPlayerHelper.PlaySound("sonido/EfectoATAQUE-DE-KI-DBZ-II-_320-kbps_.wav");
                                     break;
                                 case 3:
                                     daño = 0;
@@ -145,6 +159,8 @@ namespace combat
                                     daño = random.Next(100, 200);
                                     peleador2.Vida -= daño;
                                     Console.WriteLine($"{peleador1.Nombre} eligio ATAQUE BASE\n");
+                                    SoundPlayerHelper.PlaySound("sonido/EfectoAtaqueBase.wav");// reproduccion de sonido
+
                                     break;
                                 case 2:
                                     daño = 0;
@@ -162,12 +178,17 @@ namespace combat
                     {
                         do
                         {
+                            Console.WriteLine("Elegi una opcion correcta: ");
                             Console.WriteLine("1_Ataque Basico");
                             Console.WriteLine("2_Ataque Especial");
                             Console.WriteLine("3_Pasar Ronda");
-                            Console.WriteLine("Elegi una opcion correcta: ");
                             int.TryParse(Console.ReadLine(), out opcionAtaque);
-                        } while (opcionAtaque < 1 && opcionAtaque > 3);
+                            if (opcionAtaque < 1 || opcionAtaque > 3)
+                            {
+                                Console.WriteLine("Selecciona una opcion entre 1 y 3 por favor");
+                            }
+
+                        } while (opcionAtaque < 1 || opcionAtaque > 3);
 
                         switch (opcionAtaque)
                         {
@@ -175,11 +196,14 @@ namespace combat
                                 daño = random.Next(100, 200);
                                 peleador1.Vida -= daño;
                                 Console.WriteLine("Elegiste el ataque basico\n");
+                                SoundPlayerHelper.PlaySound("sonido/EfectoAtaqueBase.wav");// reproduccion de sonido
+
                                 break;
                             case 2:
                                 daño = random.Next(300, 500);
                                 peleador1.Vida -= daño;
                                 Console.WriteLine("Elegiste el ataque especial\n");
+                                SoundPlayerHelper.PlaySound("sonido/EfectoATAQUE-DE-KI-DBZ-II-_320-kbps_.wav");
                                 break;
                             case 3:
                                 daño = 0;
@@ -204,11 +228,14 @@ namespace combat
                                     daño = random.Next(100, 200);
                                     peleador1.Vida -= daño;
                                     Console.WriteLine($"{peleador2.Nombre} eligio ATAQUE BASE\n");
+                                    SoundPlayerHelper.PlaySound("sonido/EfectoAtaqueBase.wav");// reproduccion de sonido
+
                                     break;
                                 case 2:
                                     daño = random.Next(300, 500);
                                     peleador1.Vida -= daño;
                                     Console.WriteLine($"{peleador2.Nombre} eligio ATAQUE ESPECIAL\n");
+                                    SoundPlayerHelper.PlaySound("sonido/EfectoATAQUE-DE-KI-DBZ-II-_320-kbps_.wav");
                                     break;
                                 case 3:
                                     daño = 0;
@@ -230,6 +257,8 @@ namespace combat
                                     daño = random.Next(100, 200);
                                     peleador1.Vida -= daño;
                                     Console.WriteLine($"{peleador2.Nombre} eligio ATAQUE BASE\n");
+                                    SoundPlayerHelper.PlaySound("sonido/EfectoAtaqueBase.wav");// reproduccion de sonido
+
                                     break;
                                 case 2:
                                     daño = 0;
@@ -243,6 +272,8 @@ namespace combat
 
                 }
                 ronda++;
+                SoundPlayerHelper.StopSound();
+
             }
 
             if (peleador1.Vida <= 0 && peleador2.Vida > 0)

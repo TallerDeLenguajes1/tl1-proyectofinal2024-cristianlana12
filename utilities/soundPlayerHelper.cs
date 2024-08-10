@@ -4,6 +4,8 @@ namespace utilities
 {
     public static class SoundPlayerHelper
     {
+        private static SoundPlayer _player;
+
         public static void PlaySound(string path)
         {
             if (!System.IO.File.Exists(path))
@@ -12,10 +14,21 @@ namespace utilities
                 return;
             }
 
-            using (SoundPlayer player = new SoundPlayer(path))
+            if (_player != null)
             {
-                player.Load();
-                player.Play();
+                _player.Stop(); // Detener la reproducción actual
+            }
+
+            _player = new SoundPlayer(path);
+            _player.Load();
+            _player.Play();
+        }
+
+        public static void StopSound()
+        {
+            if (_player != null)
+            {
+                _player.Stop();
             }
         }
     }
