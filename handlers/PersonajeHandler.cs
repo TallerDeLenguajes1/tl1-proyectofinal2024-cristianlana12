@@ -5,7 +5,7 @@ namespace handlers
 {
     public static class PersonajeHandler
     {
-        public static PersonajeDatos? CrearPersonajeUsuario(int id)
+        public static PersonajeDatos? crearPersonajeUsuario(int id)
         {
             Random random = new Random();
 
@@ -47,7 +47,7 @@ namespace handlers
 
         }
 
-        public static List<PersonajeDatos> CrearGrupoPersonajesAleatorios(int cantidad, List<int> idPersonajes)
+        public static List<PersonajeDatos> crearGrupoPersonajesAleatorios(int cantidad, List<int> idPersonajes)
         {
             Random random = new Random();
             List<PersonajeDatos> grupo = new List<PersonajeDatos>();
@@ -56,8 +56,8 @@ namespace handlers
             {
                 int indexAleatorioList = random.Next(idPersonajes.Count);
                 int idAleatorio = idPersonajes[indexAleatorioList];
-                PersonajeDatos newPersonaje = CrearPersonajeUsuario(idAleatorio);
-                CargadoDetallesCombate(newPersonaje);
+                PersonajeDatos newPersonaje = crearPersonajeUsuario(idAleatorio);
+                cargadoDetallesCombate(newPersonaje);
                 if (newPersonaje != null)
                 {
                     grupo.Add(newPersonaje);
@@ -71,7 +71,7 @@ namespace handlers
             return grupo;
         }
 
-        public static void MostrarGrupo(List<PersonajeDatos> grupo, string nombreGrupo)
+        public static void mostrarGrupo(List<PersonajeDatos> grupo, string nombreGrupo)
         {
             int i = 1;
             Console.WriteLine($"------- GRUPO {nombreGrupo} -------");
@@ -83,7 +83,7 @@ namespace handlers
             Console.WriteLine("--------------------------");
         }
 
-        public static void CargadoDetallesCombate(PersonajeDatos personaje)
+        public static void cargadoDetallesCombate(PersonajeDatos personaje)
         {
             switch (personaje.Raza)
             {

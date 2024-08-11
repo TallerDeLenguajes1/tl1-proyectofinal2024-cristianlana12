@@ -6,6 +6,7 @@ using handlers;
 using clasePersonaje;
 using utilities;
 using combat;
+using claseLista;
 
 namespace MyApp
 {
@@ -13,6 +14,7 @@ namespace MyApp
     {
         static void Main(string[] args)
         {
+
             SoundPlayerHelper.PlaySound("sonido/seleccion-personaje.wav");// reproduccion de sonido
             Console.Clear();
 
@@ -36,8 +38,8 @@ namespace MyApp
 
             } while (opcionPersonaje < 1 || opcionPersonaje > 3);
 
-            PersonajeDatos miPersonaje = PersonajeHandler.CrearPersonajeUsuario(opcionPersonaje); //Creacion de personaje
-            PersonajeHandler.CargadoDetallesCombate(miPersonaje);
+            PersonajeDatos miPersonaje = PersonajeHandler.crearPersonajeUsuario(opcionPersonaje); //Creacion de personaje
+            PersonajeHandler.cargadoDetallesCombate(miPersonaje);
 
             if (miPersonaje != null)
             {
@@ -46,23 +48,23 @@ namespace MyApp
                 Console.WriteLine($"Raza: {miPersonaje.Raza}");
                 Console.WriteLine($"Ki: {miPersonaje.Ki}");
                 Console.WriteLine($"Afiliación: {miPersonaje.Afiliacion}");
-
             }
             else
             {
 
                 Console.WriteLine("No pudimos cargar tu personaje");
             }
-            Thread.Sleep(5000);
+            Thread.Sleep(3000);
             SoundPlayerHelper.StopSound();
 
-            Random random = new Random(); //36, 41,45,46,47,48,49,50...,62,79
-            List<int> idConcatenar = new List<int> { 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 };
+            //36, 41,45,46,47,48,49,50...,62,79
+            List<int> idConcatenar = new List<int>{};
+            lista.cargarListaId(idConcatenar);
 
             List<PersonajeDatos> grupo;
-            grupo = PersonajeHandler.CrearGrupoPersonajesAleatorios(3, idConcatenar);
+            grupo = PersonajeHandler.crearGrupoPersonajesAleatorios(3, idConcatenar);
             grupo.Add(miPersonaje);
-            PersonajeHandler.MostrarGrupo(grupo, "PELEADORES");
+            PersonajeHandler.mostrarGrupo(grupo, "PELEADORES");
             Thread.Sleep(5000);
 
             combatPersonaje.mainCombat(grupo);

@@ -111,7 +111,7 @@ namespace combat
                                 Console.WriteLine("Elegiste pasar de ronda\n");
                                 break;
                         }
-                        Thread.Sleep(3000);
+                        Thread.Sleep(2000);
 
                     }
                     else
@@ -145,7 +145,7 @@ namespace combat
                                     Console.WriteLine($"{peleador1.Nombre} eligio PASAR RONDA\n");
                                     break;
                             }
-                            Thread.Sleep(3000);
+                            Thread.Sleep(2000);
                         }
                         else
                         {
@@ -168,7 +168,7 @@ namespace combat
                                     Console.WriteLine($"{peleador1.Nombre} eligio PASAR RONDA\n");
                                     break;
                             }
-                            Thread.Sleep(3000);
+                            Thread.Sleep(2000);
                         }
                     }
                 }
@@ -211,7 +211,7 @@ namespace combat
                                 Console.WriteLine("Elegiste pasar de ronda \n");
                                 break;
                         }
-                        Thread.Sleep(3000);
+                        Thread.Sleep(2000);
                     }
                     else
                     {
@@ -243,7 +243,7 @@ namespace combat
                                     Console.WriteLine($"{peleador2.Nombre} eligio PASAR RONDA \n");
                                     break;
                             }
-                            Thread.Sleep(3000);
+                            Thread.Sleep(2000);
                         }
                         else
                         {
@@ -266,7 +266,7 @@ namespace combat
                                     Console.WriteLine($"{peleador2.Nombre} eligio PASAR RONDA\n");
                                     break;
                             }
-                            Thread.Sleep(3000);
+                            Thread.Sleep(2000);
                         }
                     }
 
