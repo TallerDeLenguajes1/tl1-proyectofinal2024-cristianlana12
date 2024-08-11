@@ -7,7 +7,7 @@
 *DRAGON BALZ Z - TORNEO DE ARTES MARCIALES es un juego basado en batallas, tomando como referencia al mitido Dragon ball creado por el maestro Akira Toriyama 1982-2024*
 *con la capacidad de realizar combates aleatorios con los personajes de la saga*
 
-#Jugabilidad 
+# Jugabilidad 
 *El juego solo tiene un solo estilo de torneo*
 *4 peleadores aleatorios donde uno de estos 4 sera el que el usuario elija*
 *El usuario tiene la posibilidad de elegir solo 3 personajes*
