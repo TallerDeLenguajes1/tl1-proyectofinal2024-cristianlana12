@@ -17,6 +17,9 @@ namespace MyApp
             
             SoundPlayerHelper.PlaySound("sonido/seleccion-personaje.wav");// reproduccion de sonido
             Console.Clear();
+
+            int opcionJuego;
+            
             Console.WriteLine("###########################################");
             Console.WriteLine("### INICIO EL TORNEO DE ARTES MARCIALES ###");
             Console.WriteLine("###########################################");
@@ -69,6 +72,7 @@ namespace MyApp
             Thread.Sleep(3000);
 
             combatPersonaje.mainCombat(grupo);
+
 
         }
     }

@@ -1,3 +1,4 @@
+using api;
 using clasePersonaje;
 using System;
 using System.Threading;
@@ -54,7 +55,7 @@ namespace combat
             PersonajeDatos peleadorFinal2 = final[1];
 
             mostrarParejas(peleadorFinal1, peleadorFinal2, "COMBATE FINAL");
-            ejecucionCombateUsuairo(peleadorFinal1, peleadorFinal2, final);
+            ejecucionCombateUsuairo(peleadorFinal1, peleadorFinal2, final, true);
 
         }
         public static void mostrarParejas(PersonajeDatos peleador1, PersonajeDatos peleador2, string nombrePelea)
@@ -62,7 +63,7 @@ namespace combat
             Console.WriteLine(nombrePelea);
             Console.WriteLine(peleador1.Nombre + " VS " + peleador2.Nombre + "\n");
         }
-        public static void ejecucionCombateUsuairo(PersonajeDatos peleador1, PersonajeDatos peleador2, List<PersonajeDatos> final)
+        public static void ejecucionCombateUsuairo(PersonajeDatos peleador1, PersonajeDatos peleador2, List<PersonajeDatos> final, bool peleaFinal = false)
         {
             Random random = new Random();
             int ronda = 0;
@@ -252,7 +253,7 @@ namespace combat
                         {
                             Console.WriteLine("1_Ataque Basico");
                             Console.WriteLine("2_Pasar Ronda");
-                            opcionAtaque = random.Next(1, 4);
+                            opcionAtaque = random.Next(1, 3);
 
                             switch (opcionAtaque)
                             {
@@ -278,16 +279,26 @@ namespace combat
                 SoundPlayerHelper.StopSound();
 
             }
+            historialObj newhistorial = new();
 
             if (peleador1.Vida <= 0 && peleador2.Vida > 0)
             {
                 Console.WriteLine($"\nGANO {peleador2.Nombre}");
                 final.Add(peleador2);
+                
+                if (peleaFinal)
+                {
+                    newhistorial.guardarGanador(peleador2);
+                }
             }
             else
             {
                 Console.WriteLine($"\nGANO {peleador1.Nombre}");
                 final.Add(peleador1);
+                if (peleaFinal)
+                {
+                    newhistorial.guardarGanador(peleador1);
+                }
             }
         }
 
