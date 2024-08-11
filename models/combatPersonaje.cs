@@ -5,6 +5,7 @@ using utilities;
 
 
 
+
 namespace combat
 {
     class combatPersonaje
@@ -15,6 +16,8 @@ namespace combat
             Console.WriteLine("Los combates tendras la siguiente modalidad: \n1_La primera etapa seran combates por sorteo \n2_Los vencedores se enfrentaran automaticamente, sin descanso.");
 
             combateSemiFinal(grupo, finalGrupo);
+
+            
         }
 
         public static void combateSemiFinal(List<PersonajeDatos> grupo, List<PersonajeDatos> final)

@@ -14,7 +14,7 @@ namespace MyApp
     {
         static void Main(string[] args)
         {
-
+            
             SoundPlayerHelper.PlaySound("sonido/seleccion-personaje.wav");// reproduccion de sonido
             Console.Clear();
             Console.WriteLine("###########################################");
@@ -69,6 +69,7 @@ namespace MyApp
             Thread.Sleep(3000);
 
             combatPersonaje.mainCombat(grupo);
+
         }
     }
 }
