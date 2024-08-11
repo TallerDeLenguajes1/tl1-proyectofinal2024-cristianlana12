@@ -7,6 +7,7 @@ using clasePersonaje;
 using utilities;
 using combat;
 using claseLista;
+using views;
 
 namespace MyApp
 {
@@ -18,7 +19,10 @@ namespace MyApp
             SoundPlayerHelper.PlaySound("sonido/seleccion-personaje.wav");// reproduccion de sonido
             Console.Clear();
 
-            int opcionJuego;
+            int opcionPrincipal=0;
+            vistaMenuPrincipal vistaMenuPrincipal = new();
+            vistaMenuPrincipal.menuPrincipal();
+            
             
             Console.WriteLine("###########################################");
             Console.WriteLine("### INICIO EL TORNEO DE ARTES MARCIALES ###");
