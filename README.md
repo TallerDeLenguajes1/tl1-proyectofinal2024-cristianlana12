@@ -4,16 +4,15 @@
 *Carrera: Ingenieria en Informatica*
 
 # DRAGON BALL Z - TORNEO DE ARTES PARCIALES
-*DRAGON BALZ Z - TORNEO DE ARTES MARCIALES es un juego basado en batallas, tomando como referencia al mitido Dragon ball creado por el maestro Akira Toriyama 1982-2024*
-*con la capacidad de realizar combates aleatorios con los personajes de la saga*
+*DRAGON BALL Z - TORNEO DE ARTES MARCIALES es un juego basado en batallas, inspirado en la mítica serie Dragon Ball creada por el maestro Akira Toriyama (1982-2024). El juego permite realizar combates aleatorios con personajes de la saga.*
 
 # Jugabilidad 
 *El juego solo tiene un solo estilo de torneo*
 *4 peleadores aleatorios donde uno de estos 4 sera el que el usuario elija*
 *El usuario tiene la posibilidad de elegir solo 3 personajes*
-*1_ Goku*
-*2_ Vegueta*
-*3_ piccolo*
+    *1_ Goku*
+    *2_ Vegueta*
+    *3_ piccolo*
 
 *Durante el combate:*
 *A_ Si es el turno de pelear del personaje que seleccionaste, podras interactuar con el menu de combate donde tiene las opciones de ataque base, ataque especial(Si es que posee),  pasar de ronda*
@@ -26,4 +25,4 @@
 *Se le descargara la carpeta tl1-proyectofinal2024-cristianlana22*
 *Abrir esta carpeta desde Visual Studio Code y ejecutar desde la terminal "dotnet run"*
 
-# "Eres un ser increíble, diste lo mejor de ti y por eso te admiro. Pasaste por varias transformaciones, fuiste tan poderoso que todos nosotros te odiamos." - akira toriyama - En nuestros corazones por siempre #
+# "Eres un ser increíble, diste lo mejor de ti y por eso te admiro. Pasaste por varias transformaciones, fuiste tan poderoso que todos nosotros te odiamos." - Akira Toriyama - En nuestros corazones por siempre. #
