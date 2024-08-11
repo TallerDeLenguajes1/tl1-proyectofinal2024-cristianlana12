@@ -11,9 +11,8 @@ namespace combat
     {
         public static void mainCombat(List<PersonajeDatos> grupo)
         {
-            Random random = new Random();
             List<PersonajeDatos> finalGrupo = new List<PersonajeDatos>();
-            Console.WriteLine("Los combates tendras la siguiente metodologia: \n1_La primera etapa seran combates por sorteo \n");
+            Console.WriteLine("Los combates tendras la siguiente modalidad: \n1_La primera etapa seran combates por sorteo \n2_Los vencedores se enfrentaran automaticamente, sin descanso.");
 
             combateSemiFinal(grupo, finalGrupo);
         }
@@ -22,11 +21,12 @@ namespace combat
         {
             Random random = new Random();
             int opcionAtaque;
-            List<int> idConcatenar = new List<int> { 0, 1, 2, 3 };
+            List<int> idConcatenar = new List<int> { 0, 1, 2, 3 }; 
 
-            int indiceAleatorio = random.Next(idConcatenar.Count);
-            PersonajeDatos peleador1 = grupo[idConcatenar[indiceAleatorio]];
-            idConcatenar.RemoveAt(indiceAleatorio);
+            int indiceAleatorio = random.Next(idConcatenar.Count); //obtengo un indice aleatorio de la lista idConcatenar
+            PersonajeDatos peleador1 = grupo[idConcatenar[indiceAleatorio]]; //con el contenido de este indice idConcatenar[indiceAleatorio], elijo un peleador aleatorio de la lista grupo
+            idConcatenar.RemoveAt(indiceAleatorio); //una vez obtenido el personaje aleatorio, elimino de la lista idConcatenar el elemento de indice indiceAleatorio
+            //con esto evito que se repitan los elementos
 
             indiceAleatorio = random.Next(idConcatenar.Count);
             PersonajeDatos peleador2 = grupo[idConcatenar[indiceAleatorio]];
@@ -40,8 +40,9 @@ namespace combat
             PersonajeDatos peleador4 = grupo[idConcatenar[indiceAleatorio]];
             idConcatenar.RemoveAt(indiceAleatorio);
 
-            mostrarParejas(peleador1, peleador2, "PRIMER PELEA");
-            mostrarParejas(peleador3, peleador4, "SEGUNDA PELEA");
+            mostrarParejas(peleador1, peleador2, "PRIMER PELEA"); //muestro la primer pelea
+            mostrarParejas(peleador3, peleador4, "SEGUNDA PELEA"); //muestro la segunda pelea
+
 
             ejecucionCombateUsuairo(peleador1, peleador2, final);
             ejecucionCombateUsuairo(peleador3, peleador4, final);
@@ -58,7 +59,6 @@ namespace combat
             Console.WriteLine(nombrePelea);
             Console.WriteLine(peleador1.Nombre + " VS " + peleador2.Nombre + "\n");
         }
-
         public static void ejecucionCombateUsuairo(PersonajeDatos peleador1, PersonajeDatos peleador2, List<PersonajeDatos> final)
         {
             Random random = new Random();
@@ -67,9 +67,9 @@ namespace combat
             int daño = 0;
             while (peleador1.Vida > 0 && peleador2.Vida > 0)
             {
-
-                Console.WriteLine($"{peleador1.Nombre}       |   {peleador2.Nombre}");
-                Console.WriteLine($"Vida: {peleador1.Vida}   |   Vida: {peleador2.Vida} \n");
+                
+                Console.WriteLine($"{peleador1.Nombre}            |       {peleador2.Nombre}");
+                Console.WriteLine($"Vida: {peleador1.Vida}        |       Vida: {peleador2.Vida} \n");
 
 
                 if (ronda % 2 == 0)

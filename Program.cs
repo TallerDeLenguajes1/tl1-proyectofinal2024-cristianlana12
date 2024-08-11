@@ -17,16 +17,18 @@ namespace MyApp
 
             SoundPlayerHelper.PlaySound("sonido/seleccion-personaje.wav");// reproduccion de sonido
             Console.Clear();
+            Console.WriteLine("###########################################");
+            Console.WriteLine("### INICIO EL TORNEO DE ARTES MARCIALES ###");
+            Console.WriteLine("###########################################");
 
-            Console.WriteLine("### Inicia el torneo de la fuerza ###");
-            Console.WriteLine("Este torneo sera de 4 Peleadores, Con 2 combates con un sorteo, y un combate final entre los vencedores");
+            Console.WriteLine("Este torneo sera de 4 Peleadores, Con 2 combates por sorteo, y un combate final entre los vencedores");
 
             int opcionPersonaje;
             do
             {
                 Console.WriteLine("Eliga su personaje: ");
                 Console.WriteLine("1_Goku");
-                Console.WriteLine("2_Vegeta");
+                Console.WriteLine("2_Vegeta");               //SELECCION DE ALGUNO DE LOS PERSONAJES
                 Console.WriteLine("3_Piccolo");
 
                 int.TryParse(Console.ReadLine(), out opcionPersonaje);
@@ -36,7 +38,7 @@ namespace MyApp
                     Console.WriteLine("Valor incorrecto, seleccione un personaje que esta en sus posibilidades");
                 }
 
-            } while (opcionPersonaje < 1 || opcionPersonaje > 3);
+            } while (opcionPersonaje < 1 || opcionPersonaje > 3);  //filtro para evitar que el usuario ingrese valores no permitidos
 
             PersonajeDatos miPersonaje = PersonajeHandler.crearPersonajeUsuario(opcionPersonaje); //Creacion de personaje
             PersonajeHandler.cargadoDetallesCombate(miPersonaje);
@@ -57,15 +59,14 @@ namespace MyApp
             Thread.Sleep(3000);
             SoundPlayerHelper.StopSound();
 
-            //36, 41,45,46,47,48,49,50...,62,79
-            List<int> idConcatenar = new List<int>{};
+            List<int> idConcatenar = new List<int>();
             lista.cargarListaId(idConcatenar);
 
             List<PersonajeDatos> grupo;
             grupo = PersonajeHandler.crearGrupoPersonajesAleatorios(3, idConcatenar);
             grupo.Add(miPersonaje);
             PersonajeHandler.mostrarGrupo(grupo, "PELEADORES");
-            Thread.Sleep(5000);
+            Thread.Sleep(3000);
 
             combatPersonaje.mainCombat(grupo);
         }
