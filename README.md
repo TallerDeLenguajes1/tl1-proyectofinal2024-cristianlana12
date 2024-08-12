@@ -18,6 +18,9 @@
 *A_ Si es el turno de pelear del personaje que seleccionaste, podras interactuar con el menu de combate donde tiene las opciones de ataque base, ataque especial(Si es que posee),  pasar de ronda*
 *B_ Si no es el turno de pelear del personaje seleccionado, el personaje de turno lo que hara sera elegir alguna de estas opciones de forma aleatoria en el caso de que no tenga alguna de las opciones solo elije opciones aleatorias entre sus posibilidades*
 
+# Recursos utlizados
+*El juego utiliza la api de Dragon ball Api (url: https://web.dragonball-api.com/)*
+
 # Requisitos 
 *1_Sistema operativo windows*
 *2_.Net 8.0*

@@ -5,10 +5,7 @@ using System.Threading;
 using utilities;
 using handlers;
 using claseLista;
-
-
-
-
+using modelos;
 namespace combat
 {
     class combatPersonaje
@@ -62,6 +59,7 @@ namespace combat
             {
 
                 Console.WriteLine("No pudimos cargar tu personaje");
+                return;
             }
             Thread.Sleep(3000);
             SoundPlayerHelper.StopSound();
@@ -76,7 +74,6 @@ namespace combat
             mainCombat(grupo);
 
         }
-
 
         public static void mainCombat(List<PersonajeDatos> grupo)
         {
@@ -123,252 +120,124 @@ namespace combat
             ejecucionCombateUsuairo(peleadorFinal1, peleadorFinal2, final, true);
 
         }
+
         public static void mostrarParejas(PersonajeDatos peleador1, PersonajeDatos peleador2, string nombrePelea)
         {
             Console.WriteLine(nombrePelea);
             Console.WriteLine(peleador1.Nombre + " VS " + peleador2.Nombre + "\n");
         }
+
         public static void ejecucionCombateUsuairo(PersonajeDatos peleador1, PersonajeDatos peleador2, List<PersonajeDatos> final, bool peleaFinal = false)
         {
             Random random = new Random();
             int ronda = 0;
             int opcionAtaque;
-            int daño = 0;
             while (peleador1.Vida > 0 && peleador2.Vida > 0)
             {
 
                 Console.WriteLine($"{peleador1.Nombre}            |       {peleador2.Nombre}");
                 Console.WriteLine($"Vida: {peleador1.Vida}        |       Vida: {peleador2.Vida} \n");
-
-
-                if (ronda % 2 == 0)
+                
+                var personajeTurno = ronda % 2 == 0 ? peleador1 : peleador2;
+                var opcionesDisponibles = personajeTurno.AtaqueEspecial ?
+                    new List<TipoAtaque>() 
+                    {
+                        TipoAtaque.ATAQUE_BASICO,
+                        TipoAtaque.ATAQUE_ESPECIAL,
+                        TipoAtaque.PASAR_RONDA
+                    }
+                    :
+                    new List<TipoAtaque>() 
+                    {
+                        TipoAtaque.ATAQUE_BASICO,
+                        TipoAtaque.PASAR_RONDA
+                    };
+                
+                TipoAtaque ataqueRealizar;
+                if (personajeTurno.PersonajeUsuario)
                 {
-                    if (peleador1.PersonajeUsuario)
+                    do
                     {
-                        do
+                        Console.WriteLine("Elegi una opcion correcta: ");
+
+                        for (int i=0 ; i<opcionesDisponibles.Count() ; i++)
                         {
-                            Console.WriteLine("Elegi una opcion correcta: ");
-                            Console.WriteLine("1_Ataque Basico");
-                            Console.WriteLine("2_Ataque Especial");
-                            Console.WriteLine("3_Pasar Ronda");
-                            int.TryParse(Console.ReadLine(), out opcionAtaque);
-                            if (opcionAtaque < 1 || opcionAtaque > 3)
+                            var linea = $"{i+1}_" + opcionesDisponibles[i] switch
                             {
-                                Console.WriteLine("Selecciona una opcion entre 1 y 3 por favor");
-                            }
-
-                        } while (opcionAtaque < 1 || opcionAtaque > 3);
-
-                        switch (opcionAtaque)
-                        {
-                            case 1:
-                                daño = random.Next(100, 200);
-                                peleador2.Vida -= daño;
-                                Console.WriteLine("Elegiste el ataque basico\n");
-                                SoundPlayerHelper.PlaySound("sonido/EfectoAtaqueBase.wav");// reproduccion de sonido
-
-                                break;
-                            case 2:
-                                daño = random.Next(300, 500);
-                                peleador2.Vida -= daño;
-                                Console.WriteLine("Elegiste el ataque especial\n");
-                                SoundPlayerHelper.PlaySound("sonido/EfectoATAQUE-DE-KI-DBZ-II-_320-kbps_.wav");
-                                break;
-                            case 3:
-                                daño = 0;
-                                peleador2.Vida -= daño;
-                                Console.WriteLine("Elegiste pasar de ronda\n");
-                                break;
+                                TipoAtaque.ATAQUE_BASICO => "Ataque Basico",
+                                TipoAtaque.ATAQUE_ESPECIAL => "Ataque Especial",
+                                _ => "Pasar ronda"
+                            };
+                            Console.WriteLine(linea);
                         }
-                        Thread.Sleep(2000);
 
-                    }
-                    else
-                    {
-                        if (peleador1.AtaqueEspecial)
+                        int.TryParse(Console.ReadLine(), out opcionAtaque);
+                        if (opcionAtaque < 1 || opcionAtaque > 3)
                         {
-
-                            Console.WriteLine("1_Ataque Basico");
-                            Console.WriteLine("2_Ataque Especial");
-                            Console.WriteLine("3_Pasar Ronda");
-                            opcionAtaque = random.Next(1, 4);
-
-                            switch (opcionAtaque)
-                            {
-                                case 1:
-                                    daño = random.Next(100, 200);
-                                    peleador2.Vida -= daño;
-                                    Console.WriteLine($"{peleador1.Nombre} eligio ATAQUE BASE\n");
-                                    SoundPlayerHelper.PlaySound("sonido/EfectoAtaqueBase.wav");// reproduccion de sonido
-
-                                    break;
-                                case 2:
-                                    daño = random.Next(300, 500);
-                                    peleador2.Vida -= daño;
-                                    Console.WriteLine($"{peleador1.Nombre} eligio ATAQUE ESPECIAL\n");
-                                    SoundPlayerHelper.PlaySound("sonido/EfectoATAQUE-DE-KI-DBZ-II-_320-kbps_.wav");
-                                    break;
-                                case 3:
-                                    daño = 0;
-                                    peleador2.Vida -= daño;
-                                    Console.WriteLine($"{peleador1.Nombre} eligio PASAR RONDA\n");
-                                    break;
-                            }
-                            Thread.Sleep(2000);
+                            Console.WriteLine("Selecciona una opcion entre 1 y 3 por favor");
                         }
-                        else
-                        {
-                            Console.WriteLine("1_Ataque Basico");
-                            Console.WriteLine("2_Pasar Ronda");
-                            opcionAtaque = random.Next(1, 3);
+                    } while (opcionAtaque < 1 || opcionAtaque > 3);
 
-                            switch (opcionAtaque)
-                            {
-                                case 1:
-                                    daño = random.Next(100, 200);
-                                    peleador2.Vida -= daño;
-                                    Console.WriteLine($"{peleador1.Nombre} eligio ATAQUE BASE\n");
-                                    SoundPlayerHelper.PlaySound("sonido/EfectoAtaqueBase.wav");// reproduccion de sonido
-
-                                    break;
-                                case 2:
-                                    daño = 0;
-                                    peleador2.Vida -= daño;
-                                    Console.WriteLine($"{peleador1.Nombre} eligio PASAR RONDA\n");
-                                    break;
-                            }
-                            Thread.Sleep(2000);
-                        }
-                    }
+                    ataqueRealizar = opcionesDisponibles[opcionAtaque-1];
                 }
                 else
                 {
-                    if (peleador2.PersonajeUsuario)
-                    {
-                        do
-                        {
-                            Console.WriteLine("Elegi una opcion correcta: ");
-                            Console.WriteLine("1_Ataque Basico");
-                            Console.WriteLine("2_Ataque Especial");
-                            Console.WriteLine("3_Pasar Ronda");
-                            int.TryParse(Console.ReadLine(), out opcionAtaque);
-                            if (opcionAtaque < 1 || opcionAtaque > 3)
-                            {
-                                Console.WriteLine("Selecciona una opcion entre 1 y 3 por favor");
-                            }
-
-                        } while (opcionAtaque < 1 || opcionAtaque > 3);
-
-                        switch (opcionAtaque)
-                        {
-                            case 1:
-                                daño = random.Next(100, 200);
-                                peleador1.Vida -= daño;
-                                Console.WriteLine("Elegiste el ataque basico\n");
-                                SoundPlayerHelper.PlaySound("sonido/EfectoAtaqueBase.wav");// reproduccion de sonido
-
-                                break;
-                            case 2:
-                                daño = random.Next(300, 500);
-                                peleador1.Vida -= daño;
-                                Console.WriteLine("Elegiste el ataque especial\n");
-                                SoundPlayerHelper.PlaySound("sonido/EfectoATAQUE-DE-KI-DBZ-II-_320-kbps_.wav");
-                                break;
-                            case 3:
-                                daño = 0;
-                                peleador1.Vida -= daño;
-                                Console.WriteLine("Elegiste pasar de ronda \n");
-                                break;
-                        }
-                        Thread.Sleep(2000);
-                    }
-                    else
-                    {
-                        if (peleador2.AtaqueEspecial)
-                        {
-                            Console.WriteLine("1_Ataque Basico");
-                            Console.WriteLine("2_Ataque Especial");
-                            Console.WriteLine("3_Pasar Ronda");
-                            opcionAtaque = random.Next(1, 4);
-
-                            switch (opcionAtaque)
-                            {
-                                case 1:
-                                    daño = random.Next(100, 200);
-                                    peleador1.Vida -= daño;
-                                    Console.WriteLine($"{peleador2.Nombre} eligio ATAQUE BASE\n");
-                                    SoundPlayerHelper.PlaySound("sonido/EfectoAtaqueBase.wav");// reproduccion de sonido
-
-                                    break;
-                                case 2:
-                                    daño = random.Next(300, 500);
-                                    peleador1.Vida -= daño;
-                                    Console.WriteLine($"{peleador2.Nombre} eligio ATAQUE ESPECIAL\n");
-                                    SoundPlayerHelper.PlaySound("sonido/EfectoATAQUE-DE-KI-DBZ-II-_320-kbps_.wav");
-                                    break;
-                                case 3:
-                                    daño = 0;
-                                    peleador1.Vida -= daño;
-                                    Console.WriteLine($"{peleador2.Nombre} eligio PASAR RONDA \n");
-                                    break;
-                            }
-                            Thread.Sleep(2000);
-                        }
-                        else
-                        {
-                            Console.WriteLine("1_Ataque Basico");
-                            Console.WriteLine("2_Pasar Ronda");
-                            opcionAtaque = random.Next(1, 3);
-
-                            switch (opcionAtaque)
-                            {
-                                case 1:
-                                    daño = random.Next(100, 200);
-                                    peleador1.Vida -= daño;
-                                    Console.WriteLine($"{peleador2.Nombre} eligio ATAQUE BASE\n");
-                                    SoundPlayerHelper.PlaySound("sonido/EfectoAtaqueBase.wav");// reproduccion de sonido
-
-                                    break;
-                                case 2:
-                                    daño = 0;
-                                    peleador1.Vida -= daño;
-                                    Console.WriteLine($"{peleador2.Nombre} eligio PASAR RONDA\n");
-                                    break;
-                            }
-                            Thread.Sleep(2000);
-                        }
-                    }
-
+                    ataqueRealizar = opcionesDisponibles[random.Next(opcionesDisponibles.Count())];
                 }
+
+                ejecutarAtaque(ataqueRealizar, personajeTurno, personajeTurno.Id == peleador1.Id ? peleador2 :
+                                                                                                   peleador1);
+                Thread.Sleep(2000);
                 ronda++;
                 SoundPlayerHelper.StopSound();
 
             }
-            historialObj newhistorial = new();
 
-            if (peleador1.Vida <= 0 && peleador2.Vida > 0)
-            {
-                Console.WriteLine($"\nGANO {peleador2.Nombre}");
-                final.Add(peleador2);
+            var ganador = determinarGanador(peleador1, peleador2);
+            Console.WriteLine($"\nGANO {ganador.Nombre}");
+            final.Add(ganador);
 
-                if (peleaFinal)
-                {
-                    newhistorial.guardarGanador(peleador2);
-                    Console.WriteLine("TOCAR ALGUNA TECLA PARA VOLVER AL MENU PRINCIPAL");
-                    Console.ReadKey();
-                }
-            }
-            else
+            if (peleaFinal)
             {
-                Console.WriteLine($"\nGANO {peleador1.Nombre}");
-                final.Add(peleador1);
-                if (peleaFinal)
-                {
-                    newhistorial.guardarGanador(peleador1);
-                    Console.WriteLine("TOCAR ALGUNA TECLA PARA VOLVER AL MENU PRINCIPAL");
-                    Console.ReadKey();
-                }
+                historialObj newhistorial = new();
+                newhistorial.guardarGanador(peleador2);
             }
+
+            
+        }
+    
+        private static void ejecutarAtaque(TipoAtaque tipoAtaque, PersonajeDatos atacante, PersonajeDatos peleadorDañado)
+        {
+            var random = new Random();
+            int daño;
+            switch (tipoAtaque)
+            {
+                case TipoAtaque.ATAQUE_BASICO:
+                    daño = random.Next(100, 200);
+                    peleadorDañado.Vida -= daño;
+                    Console.WriteLine($"{atacante.Nombre} realiza un ataque basico\n");
+                    SoundPlayerHelper.PlaySound("sonido/EfectoAtaqueBase.wav");// reproduccion de sonido
+
+                    break;
+                case TipoAtaque.ATAQUE_ESPECIAL:
+                    daño = random.Next(300, 500);
+                    peleadorDañado.Vida -= daño;
+                    Console.WriteLine($"{atacante.Nombre} realiza un ataque especial\n");
+                    SoundPlayerHelper.PlaySound("sonido/EfectoATAQUE-DE-KI-DBZ-II-_320-kbps_.wav");
+
+                    break;
+                default:
+                    daño = 0;
+                    peleadorDañado.Vida -= daño;
+                    Console.WriteLine($"{atacante.Nombre} elige pasar de ronda\n");
+
+                    break;
+            }
+        }
+    
+        private static PersonajeDatos determinarGanador(PersonajeDatos peleador1, PersonajeDatos peleador2)
+        {
+            return (peleador1.Vida <= 0 && peleador2.Vida > 0) ? peleador2 : peleador1;
         }
     }
 }
