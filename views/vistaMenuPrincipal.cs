@@ -3,13 +3,7 @@ namespace views
     public class vistaMenuPrincipal
     {
         public void menuPrincipal()
-        {/*
-            Console.WriteLine("#####          ####  ");
-            Console.WriteLine("##   ##       ##  ##   ");
-            Console.WriteLine("##    ##     ##    ##   ");
-            Console.WriteLine("##    ##    ##########  ");
-            Console.WriteLine("##   ##    ##        ##");
-            Console.WriteLine("#####     ##          ##");*/
+        {
             string bienvenida = @"██████╗ ██████╗  █████╗  ██████╗  ██████╗ ███╗   ██╗    ██████╗  █████╗ ██╗     ██╗         ███████╗                  
 ██╔══██╗██╔══██╗██╔══██╗██╔════╝ ██╔═══██╗████╗  ██║    ██╔══██╗██╔══██╗██║     ██║         ╚══███╔╝                  
 ██║  ██║██████╔╝███████║██║  ███╗██║   ██║██╔██╗ ██║    ██████╔╝███████║██║     ██║           ███╔╝                   

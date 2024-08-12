@@ -76,7 +76,7 @@ namespace handlers
                     personaje.Vida = 900;
                     personaje.Velocidad = 45;
                     personaje.AtaqueBasico = true;
-                    personaje.AtaqueEspecial = false;
+                    personaje.AtaqueEspecial = true;
                     break;
 
                 case "Nucleico benigno":
