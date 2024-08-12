@@ -25,7 +25,7 @@ namespace views
                 {
                     Console.WriteLine($"Peleador: {personaje.Nombre}");
                     Console.WriteLine($"Raza: {personaje.Raza}");
-                    Console.WriteLine($"ki: {personaje.Ki} \n");
+                    Console.WriteLine($"ki: {personaje.Ki}");
                     Console.WriteLine($"Es personaje del usuario: {(personaje.PersonajeUsuario ? "SI" : "NO")} \n");
                 }
             }

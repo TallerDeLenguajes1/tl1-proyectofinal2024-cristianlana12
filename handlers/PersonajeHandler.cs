@@ -35,17 +35,16 @@ namespace handlers
             {
                 int indexAleatorioList = random.Next(idPersonajes.Count);
                 int idAleatorio = idPersonajes[indexAleatorioList];
-                PersonajeDatos newPersonaje = crearPersonajeUsuario(idAleatorio);
+                PersonajeDatos? newPersonaje = crearPersonajeUsuario(idAleatorio);
+
+                if (newPersonaje == null)
+                {
+                    throw new Exception("No se pudieron obtener personajes para el combate, el torneo no puede continuar");
+                }
+
                 cargadoDetallesCombate(newPersonaje);
-                if (newPersonaje != null)
-                {
-                    grupo.Add(newPersonaje);
-                    idPersonajes.RemoveAt(indexAleatorioList);
-                }
-                else
-                {
-                    i--; //vuelve a intentar en el caso de que no se locre cargar el personaje
-                }
+                grupo.Add(newPersonaje);
+                idPersonajes.RemoveAt(indexAleatorioList);
             }
             return grupo;
         }

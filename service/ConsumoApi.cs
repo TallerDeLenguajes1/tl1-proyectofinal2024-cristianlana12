@@ -24,8 +24,8 @@ namespace api
             }
             catch (Exception ex)
             {
-                System.Console.WriteLine($"* Ha ocurrido un error consumiendo la API: {ex.Message}");
-                return null;
+                System.Console.WriteLine($"\n* Ha ocurrido un error consumiendo la API: {ex.Message}");
+                return ConsumoBackup.ObtenerPersonaje(id);
             }
         }
     }

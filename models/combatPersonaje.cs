@@ -44,34 +44,38 @@ namespace combat
 
             } while (opcionPersonaje < 1 || opcionPersonaje > 3);  //filtro para evitar que el usuario ingrese valores no permitidos
 
-            PersonajeDatos miPersonaje = PersonajeHandler.crearPersonajeUsuario(opcionPersonaje); //Creacion de personaje
-            PersonajeHandler.cargadoDetallesCombate(miPersonaje);
-
-            if (miPersonaje != null)
+            try 
             {
+                PersonajeDatos? miPersonaje = PersonajeHandler.crearPersonajeUsuario(opcionPersonaje); //Creacion de personaje
+                if (miPersonaje == null)
+                {
+                    throw new Exception("No pudimos cargar tu personaje, el torneo no puede continuar");
+                }
+                PersonajeHandler.cargadoDetallesCombate(miPersonaje);
+
                 Console.WriteLine("USTED SELECCIONO AL PELEADOR: ");
                 Console.WriteLine($"Nombre: {miPersonaje.Nombre}");
                 Console.WriteLine($"Raza: {miPersonaje.Raza}");
                 Console.WriteLine($"Ki: {miPersonaje.Ki}");
                 Console.WriteLine($"Afiliación: {miPersonaje.Afiliacion}");
+    
+                Thread.Sleep(3000);
+                SoundPlayerHelper.StopSound();
+
+                List<int> idConcatenar = new List<int>();
+                lista.cargarListaId(idConcatenar);
+                List<PersonajeDatos> grupo;
+                grupo = PersonajeHandler.crearGrupoPersonajesAleatorios(3, idConcatenar);
+                grupo.Add(miPersonaje);
+                PersonajeHandler.mostrarGrupo(grupo, "PELEADORES");
+                Thread.Sleep(3000);
+                
+                mainCombat(grupo);
             }
-            else
+            catch (Exception e)
             {
-
-                Console.WriteLine("No pudimos cargar tu personaje");
-                return;
+                System.Console.WriteLine($"{e.Message}\n");
             }
-            Thread.Sleep(3000);
-            SoundPlayerHelper.StopSound();
-
-            List<int> idConcatenar = new List<int>();
-            lista.cargarListaId(idConcatenar);
-            List<PersonajeDatos> grupo;
-            grupo = PersonajeHandler.crearGrupoPersonajesAleatorios(3, idConcatenar);
-            grupo.Add(miPersonaje);
-            PersonajeHandler.mostrarGrupo(grupo, "PELEADORES");
-            Thread.Sleep(3000);
-            mainCombat(grupo);
 
         }
 
@@ -139,6 +143,7 @@ namespace combat
                 Console.WriteLine($"Vida: {peleador1.Vida}        |       Vida: {peleador2.Vida} \n");
                 
                 var personajeTurno = ronda % 2 == 0 ? peleador1 : peleador2;
+
                 var opcionesDisponibles = personajeTurno.AtaqueEspecial ?
                     new List<TipoAtaque>() 
                     {
@@ -200,7 +205,7 @@ namespace combat
             if (peleaFinal)
             {
                 historialObj newhistorial = new();
-                newhistorial.guardarGanador(peleador2);
+                newhistorial.guardarGanador(ganador);
             }
 
             
