@@ -1,6 +1,5 @@
 using System.Text.Json.Serialization;
 
-
 namespace api
 {
     public class CharactersPersonaje

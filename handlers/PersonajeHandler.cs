@@ -5,46 +5,25 @@ namespace handlers
 {
     public static class PersonajeHandler
     {
+
         public static PersonajeDatos? crearPersonajeUsuario(int id)
         {
             Random random = new Random();
 
-            if (id == 1 || id == 2 || id == 3)
+            var personajeData = consumoApi.Get(id).GetAwaiter().GetResult();
+            if (personajeData == null) return null;
+
+            PersonajeDatos newPersonaje = new PersonajeDatos()
             {
-                var personajeData = consumoApi.Get(id);
-                if (personajeData == null) return null;
-
-                PersonajeDatos newPersonaje = new PersonajeDatos()
-                {
-                    Id = personajeData.Id,
-                    Nombre = personajeData.Name,
-                    Raza = personajeData.Race,
-                    Ki = personajeData.Ki,
-                    Afiliacion = personajeData.Affiliation,
-                    PersonajeUsuario = true,
-                    Tranformaciones = personajeData.Transformations?.Select(t => t.Name).ToArray()
-                };
-                return newPersonaje;
-            }
-            else
-            {
-                CharactersPersonaje personajeData = consumoApi.Get(id);
-                if (personajeData == null) return null;
-
-                PersonajeDatos newPersonaje = new PersonajeDatos()
-                {
-                    Id = personajeData.Id,
-                    Nombre = personajeData.Name,
-                    Raza = personajeData.Race,
-                    Ki = personajeData.Ki,
-                    Afiliacion = personajeData.Affiliation,
-                    PersonajeUsuario = false,
-                    Tranformaciones = personajeData.Transformations?.Select(t => t.Name).ToArray()
-                };
-                return newPersonaje;
-            }
-
-
+                Id = personajeData.Id,
+                Nombre = personajeData.Name,
+                Raza = personajeData.Race,
+                Ki = personajeData.Ki,
+                Afiliacion = personajeData.Affiliation,
+                PersonajeUsuario = id == 1 || id == 2 || id == 3,
+                Tranformaciones = personajeData.Transformations?.Select(t => t.Name).ToArray()
+            };
+            return newPersonaje;
         }
 
         public static List<PersonajeDatos> crearGrupoPersonajesAleatorios(int cantidad, List<int> idPersonajes)

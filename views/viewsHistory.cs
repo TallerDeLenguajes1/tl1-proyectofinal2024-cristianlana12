@@ -26,15 +26,15 @@ namespace views
                     Console.WriteLine($"Peleador: {personaje.Nombre}");
                     Console.WriteLine($"Raza: {personaje.Raza}");
                     Console.WriteLine($"ki: {personaje.Ki} \n");
+                    Console.WriteLine($"Es personaje del usuario: {(personaje.PersonajeUsuario ? "SI" : "NO")} \n");
                 }
-                Console.ReadKey();
             }
             else
             {
                 Console.WriteLine("No existen ganadores historicos");
-                Console.ReadKey();
             }
             Console.WriteLine("PRECIONE UNA TECLA PARA VOLVER AL MENU");
+            Console.ReadKey();
         }
     }
 }
