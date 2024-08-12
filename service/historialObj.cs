@@ -27,7 +27,7 @@ namespace api
                     }
                 }
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 Console.WriteLine("Ocurrio un error mostrando el historial");
             }
@@ -37,7 +37,10 @@ namespace api
         {
             string nombreArchivo = @$"{nameFile}/{nameJson}";
             verificarUbicacion();
-            if (!File.Exists(nombreArchivo)) return new List<PersonajeDatos>();
+            if (!File.Exists(nombreArchivo))
+            {
+                return new List<PersonajeDatos>();
+            }
 
             var ganadores = new List<PersonajeDatos>();
 
@@ -65,13 +68,11 @@ namespace api
 
         public void verificarUbicacion()
         {
-            string nombreArchivo = @$"{nameFile}/{nameJson}";
-            if(!Directory.Exists(nameFile)){
+            if (!Directory.Exists(nameFile))
+            {
                 Directory.CreateDirectory(nameFile);
-                File.Create(nameJson);
-            }else if(!File.Exists(nombreArchivo)){
-                File.Create(nombreArchivo);
             }
+            
         }
     }
 }

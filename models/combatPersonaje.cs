@@ -3,6 +3,8 @@ using clasePersonaje;
 using System;
 using System.Threading;
 using utilities;
+using handlers;
+using claseLista;
 
 
 
@@ -11,21 +13,84 @@ namespace combat
 {
     class combatPersonaje
     {
+        public void inicioCombate()
+        {
+
+            Console.WriteLine(@"██╗███╗   ██╗██╗ ██████╗██╗ ██████╗     ███████╗██╗         ████████╗ ██████╗ ██████╗ ███╗   ██╗███████╗ ██████╗ 
+██║████╗  ██║██║██╔════╝██║██╔═══██╗    ██╔════╝██║         ╚══██╔══╝██╔═══██╗██╔══██╗████╗  ██║██╔════╝██╔═══██╗
+██║██╔██╗ ██║██║██║     ██║██║   ██║    █████╗  ██║            ██║   ██║   ██║██████╔╝██╔██╗ ██║█████╗  ██║   ██║
+██║██║╚██╗██║██║██║     ██║██║   ██║    ██╔══╝  ██║            ██║   ██║   ██║██╔══██╗██║╚██╗██║██╔══╝  ██║   ██║
+██║██║ ╚████║██║╚██████╗██║╚██████╔╝    ███████╗███████╗       ██║   ╚██████╔╝██║  ██║██║ ╚████║███████╗╚██████╔╝
+╚═╝╚═╝  ╚═══╝╚═╝ ╚═════╝╚═╝ ╚═════╝     ╚══════╝╚══════╝       ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝ ╚═════╝ ");
+            Console.WriteLine(@"██████╗ ███████╗     █████╗ ██████╗ ████████╗███████╗███████╗    ███╗   ███╗ █████╗ ██████╗  ██████╗██╗ █████╗ ██╗     ███████╗███████╗
+██╔══██╗██╔════╝    ██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██╔════╝    ████╗ ████║██╔══██╗██╔══██╗██╔════╝██║██╔══██╗██║     ██╔════╝██╔════╝
+██║  ██║█████╗      ███████║██████╔╝   ██║   █████╗  ███████╗    ██╔████╔██║███████║██████╔╝██║     ██║███████║██║     █████╗  ███████╗
+██║  ██║██╔══╝      ██╔══██║██╔══██╗   ██║   ██╔══╝  ╚════██║    ██║╚██╔╝██║██╔══██║██╔══██╗██║     ██║██╔══██║██║     ██╔══╝  ╚════██║
+██████╔╝███████╗    ██║  ██║██║  ██║   ██║   ███████╗███████║    ██║ ╚═╝ ██║██║  ██║██║  ██║╚██████╗██║██║  ██║███████╗███████╗███████║
+╚═════╝ ╚══════╝    ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚══════╝    ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝");
+            Console.WriteLine("Este torneo sera de 4 Peleadores, Con 2 combates por sorteo, y un combate final entre los vencedores");
+
+            int opcionPersonaje;
+            do
+            {
+                Console.WriteLine("Eliga su personaje: ");
+                Console.WriteLine("1_Goku");
+                Console.WriteLine("2_Vegeta");               //SELECCION DE ALGUNO DE LOS PERSONAJES
+                Console.WriteLine("3_Piccolo");
+
+                int.TryParse(Console.ReadLine(), out opcionPersonaje);
+
+                if (opcionPersonaje < 1 || opcionPersonaje > 3)
+                {
+                    Console.WriteLine("Valor incorrecto, seleccione un personaje que esta en sus posibilidades");
+                }
+
+            } while (opcionPersonaje < 1 || opcionPersonaje > 3);  //filtro para evitar que el usuario ingrese valores no permitidos
+
+            PersonajeDatos miPersonaje = PersonajeHandler.crearPersonajeUsuario(opcionPersonaje); //Creacion de personaje
+            PersonajeHandler.cargadoDetallesCombate(miPersonaje);
+
+            if (miPersonaje != null)
+            {
+                Console.WriteLine("USTED SELECCIONO AL PELEADOR: ");
+                Console.WriteLine($"Nombre: {miPersonaje.Nombre}");
+                Console.WriteLine($"Raza: {miPersonaje.Raza}");
+                Console.WriteLine($"Ki: {miPersonaje.Ki}");
+                Console.WriteLine($"Afiliación: {miPersonaje.Afiliacion}");
+            }
+            else
+            {
+
+                Console.WriteLine("No pudimos cargar tu personaje");
+            }
+            Thread.Sleep(3000);
+            SoundPlayerHelper.StopSound();
+
+            List<int> idConcatenar = new List<int>();
+            lista.cargarListaId(idConcatenar);
+            List<PersonajeDatos> grupo;
+            grupo = PersonajeHandler.crearGrupoPersonajesAleatorios(3, idConcatenar);
+            grupo.Add(miPersonaje);
+            PersonajeHandler.mostrarGrupo(grupo, "PELEADORES");
+            Thread.Sleep(3000);
+            mainCombat(grupo);
+
+        }
+
+
         public static void mainCombat(List<PersonajeDatos> grupo)
         {
             List<PersonajeDatos> finalGrupo = new List<PersonajeDatos>();
             Console.WriteLine("Los combates tendras la siguiente modalidad: \n1_La primera etapa seran combates por sorteo \n2_Los vencedores se enfrentaran automaticamente, sin descanso.");
 
             combateSemiFinal(grupo, finalGrupo);
-
-            
         }
 
         public static void combateSemiFinal(List<PersonajeDatos> grupo, List<PersonajeDatos> final)
         {
             Random random = new Random();
             int opcionAtaque;
-            List<int> idConcatenar = new List<int> { 0, 1, 2, 3 }; 
+            List<int> idConcatenar = new List<int> { 0, 1, 2, 3 };
 
             int indiceAleatorio = random.Next(idConcatenar.Count); //obtengo un indice aleatorio de la lista idConcatenar
             PersonajeDatos peleador1 = grupo[idConcatenar[indiceAleatorio]]; //con el contenido de este indice idConcatenar[indiceAleatorio], elijo un peleador aleatorio de la lista grupo
@@ -71,7 +136,7 @@ namespace combat
             int daño = 0;
             while (peleador1.Vida > 0 && peleador2.Vida > 0)
             {
-                
+
                 Console.WriteLine($"{peleador1.Nombre}            |       {peleador2.Nombre}");
                 Console.WriteLine($"Vida: {peleador1.Vida}        |       Vida: {peleador2.Vida} \n");
 
@@ -285,10 +350,12 @@ namespace combat
             {
                 Console.WriteLine($"\nGANO {peleador2.Nombre}");
                 final.Add(peleador2);
-                
+
                 if (peleaFinal)
                 {
                     newhistorial.guardarGanador(peleador2);
+                    Console.WriteLine("TOCAR ALGUNA TECLA PARA VOLVER AL MENU PRINCIPAL");
+                    Console.ReadKey();
                 }
             }
             else
@@ -298,9 +365,10 @@ namespace combat
                 if (peleaFinal)
                 {
                     newhistorial.guardarGanador(peleador1);
+                    Console.WriteLine("TOCAR ALGUNA TECLA PARA VOLVER AL MENU PRINCIPAL");
+                    Console.ReadKey();
                 }
             }
         }
-
     }
 }

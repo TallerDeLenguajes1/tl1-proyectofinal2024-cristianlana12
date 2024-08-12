@@ -1,0 +1,18 @@
+[
+  {
+    "Nombre": "Piccolo",
+    "Raza": "Namekian",
+    "Ki": "2.000.000",
+    "Afiliacion": "Z Fighter",
+    "Tranformaciones": [
+      "Piccolo Super Namekian",
+      "Piccolo Orange"
+    ],
+    "Id": 3,
+    "Vida": 215,
+    "Velocidad": 45,
+    "AtaqueBasico": true,
+    "AtaqueEspecial": false,
+    "PersonajeUsuario": true
+  }
+]

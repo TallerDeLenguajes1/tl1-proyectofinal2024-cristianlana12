@@ -15,69 +15,43 @@ namespace MyApp
     {
         static void Main(string[] args)
         {
-            
+
             SoundPlayerHelper.PlaySound("sonido/seleccion-personaje.wav");// reproduccion de sonido
-            Console.Clear();
 
-            int opcionPrincipal=0;
+            int opcionPrincipal;
             vistaMenuPrincipal vistaMenuPrincipal = new();
-            vistaMenuPrincipal.menuPrincipal();
-            
-            
-            Console.WriteLine("###########################################");
-            Console.WriteLine("### INICIO EL TORNEO DE ARTES MARCIALES ###");
-            Console.WriteLine("###########################################");
+            bool salir = false;
 
-            Console.WriteLine("Este torneo sera de 4 Peleadores, Con 2 combates por sorteo, y un combate final entre los vencedores");
-
-            int opcionPersonaje;
+            Console.Clear();
             do
             {
-                Console.WriteLine("Eliga su personaje: ");
-                Console.WriteLine("1_Goku");
-                Console.WriteLine("2_Vegeta");               //SELECCION DE ALGUNO DE LOS PERSONAJES
-                Console.WriteLine("3_Piccolo");
-
-                int.TryParse(Console.ReadLine(), out opcionPersonaje);
-
-                if (opcionPersonaje < 1 || opcionPersonaje > 3)
+                vistaMenuPrincipal.menuPrincipal();
+                int.TryParse(Console.ReadLine(), out opcionPrincipal);
+                if (opcionPrincipal < 1 || opcionPrincipal > 3)
                 {
-                    Console.WriteLine("Valor incorrecto, seleccione un personaje que esta en sus posibilidades");
+                    Console.WriteLine("Opcion incorrecta, seleccione una opcion valida");
                 }
+                else
+                {
+                    switch (opcionPrincipal)
+                    {
+                        case 1:
+                            combatPersonaje newCombate = new();
+                            newCombate.inicioCombate();
+                            break;
+                        case 2:
+                            historialObj newLecturaGanadores = new();
+                            viewsHistory newHistory = new(newLecturaGanadores.leerGanadores());
+                            newHistory.mostrarHistorial();
+                            break;
+                        case 3:
+                            salir = true;
+                            break;
+                    }
+                }
+                SoundPlayerHelper.PlaySound("sonido/seleccion-personaje.wav");// reproduccion de sonido
 
-            } while (opcionPersonaje < 1 || opcionPersonaje > 3);  //filtro para evitar que el usuario ingrese valores no permitidos
-
-            PersonajeDatos miPersonaje = PersonajeHandler.crearPersonajeUsuario(opcionPersonaje); //Creacion de personaje
-            PersonajeHandler.cargadoDetallesCombate(miPersonaje);
-
-            if (miPersonaje != null)
-            {
-                Console.WriteLine("USTED SELECCIONO AL PELEADOR: ");
-                Console.WriteLine($"Nombre: {miPersonaje.Nombre}");
-                Console.WriteLine($"Raza: {miPersonaje.Raza}");
-                Console.WriteLine($"Ki: {miPersonaje.Ki}");
-                Console.WriteLine($"Afiliación: {miPersonaje.Afiliacion}");
-            }
-            else
-            {
-
-                Console.WriteLine("No pudimos cargar tu personaje");
-            }
-            Thread.Sleep(3000);
-            SoundPlayerHelper.StopSound();
-
-            List<int> idConcatenar = new List<int>();
-            lista.cargarListaId(idConcatenar);
-
-            List<PersonajeDatos> grupo;
-            grupo = PersonajeHandler.crearGrupoPersonajesAleatorios(3, idConcatenar);
-            grupo.Add(miPersonaje);
-            PersonajeHandler.mostrarGrupo(grupo, "PELEADORES");
-            Thread.Sleep(3000);
-
-            combatPersonaje.mainCombat(grupo);
-
-
+            } while (!salir);
         }
     }
 }

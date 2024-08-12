@@ -41,6 +41,7 @@ namespace views
 
             Console.WriteLine("1_Iniciar Juego");
             Console.WriteLine("2_Mostrar Historial");
+            Console.WriteLine("3_Salir del juego ");
             Console.WriteLine("Elija una opcion correcta: ");
         }
     }
