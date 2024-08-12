@@ -20,6 +20,13 @@
 
 # Recursos utlizados
 *El juego utiliza la api de Dragon ball Api (url: https://web.dragonball-api.com/)*
+## Metodo asincronico
+*El método Get(int id) es asíncrono y retorna un objeto de tipo Task<CharactersPersonaje?>. Esto significa que el método puede ejecutarse en segundo plano sin bloquear el flujo principal de la aplicación.*
+## Construcción de la URL:
+*La URL de la API se construye dinámicamente utilizando el ID del personaje. Se define en la variable url mediante interpolación de cadenas: var url = $"https://dragonball-api.com/api/characters/{id}". Aquí, {id} es reemplazado por el valor del ID pasado al método, lo que permite acceder a un recurso específico en la API.*
+## Manejo de Errores:
+*Si ocurre alguna excepción durante la solicitud (por ejemplo, si la API no está disponible), el código captura la excepción y muestra un mensaje de error en la consola.*
+*Luego, en caso de error, se utiliza un método de respaldo ConsumoBackup.ObtenerPersonaje(id) para obtener el personaje, asegurando que el programa pueda continuar funcionando.*
 
 # Requisitos 
 *1_Sistema operativo windows*

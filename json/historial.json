@@ -1,0 +1,31 @@
+[
+  {
+    "Nombre": "Piccolo",
+    "Raza": "Namekian",
+    "Ki": "2.000.000",
+    "Afiliacion": "Z Fighter",
+    "Tranformaciones": [
+      null,
+      null
+    ],
+    "Id": 3,
+    "Vida": 710,
+    "Velocidad": 45,
+    "AtaqueBasico": true,
+    "AtaqueEspecial": true,
+    "PersonajeUsuario": true
+  },
+  {
+    "Nombre": "Android 20 (Dr. Gero)",
+    "Raza": "Android",
+    "Ki": "128.000.000",
+    "Afiliacion": "Villain",
+    "Tranformaciones": [],
+    "Id": 25,
+    "Vida": 532,
+    "Velocidad": 70,
+    "AtaqueBasico": true,
+    "AtaqueEspecial": true,
+    "PersonajeUsuario": false
+  }
+]
